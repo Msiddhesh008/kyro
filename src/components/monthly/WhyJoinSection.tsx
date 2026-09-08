@@ -1,4 +1,5 @@
 import { MONTHLY_BENEFITS } from '../../constants/monthlyGiving'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './WhyJoinSection.module.css'
 
 const ICONS = ['affordable', 'community', 'transparent'] as const
@@ -44,20 +45,29 @@ function BenefitIcon({ kind }: { kind: (typeof ICONS)[number] }) {
 }
 
 export function WhyJoinSection() {
-  return (
-    <section className={styles.section} aria-labelledby="why-join-heading">
-      <div className="container">
-        <h2 id="why-join-heading" className={styles.title}>
-          Why Join <span>Social Impact Plan</span>?
-        </h2>
-        <div className={styles.underline} aria-hidden="true" />
-        <p className={styles.lead}>
-          Every 2 minutes, a child dies because they can&apos;t afford medical
-          aid. With <span>Social Impact Plan</span>, we are on a mission to make
-          healthcare a reality for everyone.
-        </p>
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
 
-        <div className={styles.media}>
+  return (
+    <section
+      ref={ref}
+      className={styles.section}
+      aria-labelledby="why-join-heading"
+    >
+      <div className="container">
+        <div className={`reveal ${show}`}>
+          <h2 id="why-join-heading" className={styles.title}>
+            Why Join <span>Social Impact Plan</span>?
+          </h2>
+          <div className={styles.underline} aria-hidden="true" />
+          <p className={styles.lead}>
+            Every 2 minutes, a child dies because they can&apos;t afford medical
+            aid. With <span>Social Impact Plan</span>, we are on a mission to
+            make healthcare a reality for everyone.
+          </p>
+        </div>
+
+        <div className={`${styles.media} reveal revealDelay ${show}`}>
           <img
             src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=80"
             alt="Healthcare story preview"
@@ -67,7 +77,7 @@ export function WhyJoinSection() {
           </button>
         </div>
 
-        <ul className={styles.benefits}>
+        <ul className={`${styles.benefits} reveal revealDelay2 ${show}`}>
           {MONTHLY_BENEFITS.map((benefit, index) => (
             <li key={benefit.title} className={styles.benefit}>
               <BenefitIcon kind={ICONS[index]} />

@@ -1,18 +1,23 @@
 import { Link } from 'react-router-dom'
 
 import { APP_NAME } from '../../constants'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './MonthlyGivingShowcase.module.css'
 
 const AMOUNTS = [300, 500, 1000] as const
 
 export function MonthlyGivingShowcase() {
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
+
   return (
     <section
+      ref={ref}
       className={styles.section}
       aria-labelledby="monthly-showcase-heading"
     >
       <div className={`container ${styles.inner}`}>
-        <div className={styles.copy}>
+        <div className={`${styles.copy} reveal ${show}`}>
           <p className={styles.eyebrow}>Social impact plan</p>
           <h2 id="monthly-showcase-heading" className={styles.title}>
             Give once a month. Change a story all year.
@@ -38,7 +43,10 @@ export function MonthlyGivingShowcase() {
           </Link>
         </div>
 
-        <div className={styles.visual} aria-hidden="true">
+        <div
+          className={`${styles.visual} reveal revealDelay ${show}`}
+          aria-hidden="true"
+        >
           <div className={styles.orbit}>
             <span className={styles.pulse} />
             <div className={styles.calendar}>

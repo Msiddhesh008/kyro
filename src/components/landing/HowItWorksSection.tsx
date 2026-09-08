@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { APP_NAME } from '../../constants'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './HowItWorksSection.module.css'
 
 const STEPS = [
@@ -21,13 +22,17 @@ const STEPS = [
 ] as const
 
 export function HowItWorksSection() {
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
+
   return (
     <section
+      ref={ref}
       className={styles.section}
       aria-labelledby="how-it-works-heading"
     >
       <div className={`container ${styles.inner}`}>
-        <header className={styles.header}>
+        <header className={`${styles.header} reveal ${show}`}>
           <h2 id="how-it-works-heading" className={styles.title}>
             Start a crowdfunding fundraiser in three simple steps
           </h2>
@@ -38,7 +43,7 @@ export function HowItWorksSection() {
           </p>
         </header>
 
-        <div className={styles.layout}>
+        <div className={`${styles.layout} reveal revealDelay ${show}`}>
           <ol className={styles.steps}>
             {STEPS.map((step, index) => (
               <li key={step.title} className={styles.step}>
@@ -68,27 +73,6 @@ export function HowItWorksSection() {
                   and mobile.
                 </p>
               </div>
-            </div>
-            <p className={styles.appLead}>
-              Crowdfund on the go with the {APP_NAME} app
-            </p>
-            <div className={styles.badges}>
-              <a
-                href="#coming-soon"
-                className={styles.badge}
-                aria-label="Download on the App Store — coming soon"
-              >
-                <span className={styles.badgeStore}>App Store</span>
-                <span className={styles.badgeSoon}>Coming soon</span>
-              </a>
-              <a
-                href="#coming-soon"
-                className={styles.badge}
-                aria-label="Get it on Google Play — coming soon"
-              >
-                <span className={styles.badgeStore}>Google Play</span>
-                <span className={styles.badgeSoon}>Coming soon</span>
-              </a>
             </div>
           </aside>
         </div>

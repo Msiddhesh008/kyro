@@ -180,6 +180,34 @@ input {
   animation: fade-up var(--duration) var(--ease-out) 0.3s both;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.revealVisible {
+  animation: fade-up var(--duration) var(--ease-out) both;
+}
+
+.revealDelay.revealVisible {
+  animation-delay: 0.12s;
+}
+
+.revealDelay2.revealVisible {
+  animation-delay: 0.22s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .revealVisible {
+    animation: none;
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

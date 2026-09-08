@@ -1,12 +1,20 @@
 import { APP_NAME } from '../../constants'
 import { MONTHLY_TRUST_STATS } from '../../constants/monthlyGiving'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './WhoWeAreSection.module.css'
 
 export function WhoWeAreSection() {
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
+
   return (
-    <section className={styles.section} aria-labelledby="who-heading">
+    <section
+      ref={ref}
+      className={styles.section}
+      aria-labelledby="who-heading"
+    >
       <div className={styles.banner}>
-        <div className="container">
+        <div className={`container reveal ${show}`}>
           <p className={styles.eyebrow}>Who Are We?</p>
           <h2 id="who-heading" className={styles.title}>
             {APP_NAME} is a crowdfunding platform based out of India.
@@ -19,7 +27,7 @@ export function WhoWeAreSection() {
       </div>
 
       <div className={`container ${styles.cardWrap}`}>
-        <ul className={styles.card}>
+        <ul className={`${styles.card} reveal revealDelay ${show}`}>
           {MONTHLY_TRUST_STATS.map((stat) => (
             <li key={stat.label}>
               <strong>{stat.value}</strong>

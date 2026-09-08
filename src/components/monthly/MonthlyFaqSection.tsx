@@ -1,20 +1,27 @@
 import { useState } from 'react'
 
 import { MONTHLY_FAQS } from '../../constants/monthlyGiving'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './MonthlyFaqSection.module.css'
 
 export function MonthlyFaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
 
   return (
-    <section className={styles.section} aria-labelledby="faq-heading">
+    <section
+      ref={ref}
+      className={styles.section}
+      aria-labelledby="faq-heading"
+    >
       <div className="container">
-        <h2 id="faq-heading" className={styles.title}>
+        <h2 id="faq-heading" className={`${styles.title} reveal ${show}`}>
           FAQs
         </h2>
         <div className={styles.rule} aria-hidden="true" />
 
-        <div className={styles.list}>
+        <div className={`${styles.list} reveal revealDelay ${show}`}>
           {MONTHLY_FAQS.map((faq, index) => {
             const isOpen = openIndex === index
             return (
@@ -38,7 +45,7 @@ export function MonthlyFaqSection() {
           })}
         </div>
 
-        <div className={styles.footer}>
+        <div className={`${styles.footer} reveal revealDelay ${show}`}>
           <p>
             Some fundraisers are not eligible for tax deduction such as 80G,
             501(c), etc. Any questions?

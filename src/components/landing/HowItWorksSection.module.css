@@ -134,7 +134,7 @@
   display: grid;
   place-items: center;
   gap: var(--space-4);
-  min-height: 22rem;
+  min-height: 30rem;
   padding: var(--space-6) var(--space-4);
   border-radius: 1.35rem;
   background: var(--color-surface);

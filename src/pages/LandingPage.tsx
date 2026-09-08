@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom'
 
 import { CampaignListItem } from '../components/campaigns/CampaignListItem'
 import { HowItWorksSection } from '../components/landing/HowItWorksSection'
+import { ManageOnTheGoSection } from '../components/landing/ManageOnTheGoSection'
 import { MonthlyGivingShowcase } from '../components/landing/MonthlyGivingShowcase'
 import { WhyKyroSection } from '../components/landing/WhyKyroSection'
 import { APP_NAME, USE_MOCK } from '../constants'
 import { useMockCampaigns } from '../hooks/useMockCampaigns'
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll'
 import { useGetCampaignsQuery } from '../services/api'
 import { getFeaturedCampaigns } from '../services/campaignService'
 import styles from './LandingPage.module.css'
@@ -18,6 +20,8 @@ const HERO_IMAGES = [
 
 export function LandingPage() {
   useMockCampaigns()
+  const { ref: featuredRef, visible: featuredVisible } = useRevealOnScroll()
+  const featuredShow = featuredVisible ? 'revealVisible' : ''
   const apiQuery = useGetCampaignsQuery(undefined, { skip: USE_MOCK })
   const showcase = USE_MOCK
     ? getFeaturedCampaigns(3)
@@ -62,12 +66,13 @@ export function LandingPage() {
         </div>
       </section>
 
-    
       <MonthlyGivingShowcase />
 
-      <section className={styles.section}>
+      <section ref={featuredRef} className={styles.section}>
         <div className="container">
-          <div className={styles.featuredHeader}>
+          <div
+            className={`${styles.featuredHeader} reveal ${featuredShow}`}
+          >
             <div>
               <h2 className={styles.sectionTitle}>Featured campaigns</h2>
               <p className={styles.sectionLead}>
@@ -78,7 +83,9 @@ export function LandingPage() {
               See all
             </Link>
           </div>
-          <div className={styles.featuredList}>
+          <div
+            className={`${styles.featuredList} reveal revealDelay ${featuredShow}`}
+          >
             {showcase.map((campaign) => (
               <CampaignListItem key={campaign.id} campaign={campaign} />
             ))}
@@ -86,6 +93,7 @@ export function LandingPage() {
         </div>
       </section>
       <HowItWorksSection />
+      <ManageOnTheGoSection />
       <WhyKyroSection />
     </>
   )

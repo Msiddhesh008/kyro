@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 
 import { MONTHLY_STEPS } from '../../constants/monthlyGiving'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './HowItWorksCarousel.module.css'
 
 const TONE_CLASS = {
@@ -12,6 +13,8 @@ const TONE_CLASS = {
 export function HowItWorksCarousel() {
   const trackRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
 
   const scrollToIndex = (index: number) => {
     const track = trackRef.current
@@ -41,16 +44,22 @@ export function HowItWorksCarousel() {
   }
 
   return (
-    <section className={styles.section} aria-labelledby="how-monthly-heading">
+    <section
+      ref={ref}
+      className={styles.section}
+      aria-labelledby="how-monthly-heading"
+    >
       <div className="container">
-        <h2 id="how-monthly-heading" className={styles.title}>
-          How it works
-        </h2>
-        <div className={styles.underline} aria-hidden="true" />
+        <div className={`reveal ${show}`}>
+          <h2 id="how-monthly-heading" className={styles.title}>
+            How it works
+          </h2>
+          <div className={styles.underline} aria-hidden="true" />
+        </div>
 
         <div
           ref={trackRef}
-          className={styles.track}
+          className={`${styles.track} reveal revealDelay ${show}`}
           onScroll={onScroll}
           tabIndex={0}
           aria-label="Monthly giving steps"
@@ -75,7 +84,11 @@ export function HowItWorksCarousel() {
           ))}
         </div>
 
-        <div className={styles.dots} role="tablist" aria-label="Steps">
+        <div
+          className={`${styles.dots} reveal revealDelay ${show}`}
+          role="tablist"
+          aria-label="Steps"
+        >
           {MONTHLY_STEPS.map((step, index) => (
             <button
               key={step.step}

@@ -1,4 +1,5 @@
 import { APP_NAME } from '../../constants'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './WhyKyroSection.module.css'
 
 interface FeatureItem {
@@ -159,13 +160,23 @@ function FeatureIcon({ name }: { name: FeatureItem['icon'] }) {
 }
 
 export function WhyKyroSection() {
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
+
   return (
-    <section className={styles.section} aria-labelledby="why-kyro-heading">
+    <section
+      ref={ref}
+      className={styles.section}
+      aria-labelledby="why-kyro-heading"
+    >
       <div className="container">
-        <h2 id="why-kyro-heading" className={styles.title}>
+        <h2
+          id="why-kyro-heading"
+          className={`${styles.title} reveal ${show}`}
+        >
           Why {APP_NAME}?
         </h2>
-        <ul className={styles.grid}>
+        <ul className={`${styles.grid} reveal revealDelay ${show}`}>
           {FEATURES.map((feature) => (
             <li key={feature.label} className={styles.item}>
               <FeatureIcon name={feature.icon} />

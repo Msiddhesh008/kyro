@@ -3,6 +3,7 @@ import {
   MONTHLY_MAP_CALLOUT,
   MONTHLY_TESTIMONIAL,
 } from '../../constants/monthlyGiving'
+import { useRevealOnScroll } from '../../hooks/useRevealOnScroll'
 import styles from './OurImpactSection.module.css'
 
 const PIN_POSITIONS = [
@@ -13,20 +14,29 @@ const PIN_POSITIONS = [
 ]
 
 export function OurImpactSection() {
+  const { ref, visible } = useRevealOnScroll()
+  const show = visible ? 'revealVisible' : ''
+
   return (
-    <section className={styles.section} aria-labelledby="impact-heading">
+    <section
+      ref={ref}
+      className={styles.section}
+      aria-labelledby="impact-heading"
+    >
       <div className="container">
-        <h2 id="impact-heading" className={styles.title}>
-          Our Impact
-        </h2>
-        <div className={styles.underline} aria-hidden="true" />
+        <div className={`reveal ${show}`}>
+          <h2 id="impact-heading" className={styles.title}>
+            Our Impact
+          </h2>
+          <div className={styles.underline} aria-hidden="true" />
 
-        <blockquote className={styles.quote}>
-          <p>&ldquo;{MONTHLY_TESTIMONIAL.quote}&rdquo;</p>
-          <footer>{MONTHLY_TESTIMONIAL.attribution}</footer>
-        </blockquote>
+          <blockquote className={styles.quote}>
+            <p>&ldquo;{MONTHLY_TESTIMONIAL.quote}&rdquo;</p>
+            <footer>{MONTHLY_TESTIMONIAL.attribution}</footer>
+          </blockquote>
+        </div>
 
-        <div className={styles.layout}>
+        <div className={`${styles.layout} reveal revealDelay ${show}`}>
           <div className={styles.mapWrap}>
             <svg
               className={styles.map}
