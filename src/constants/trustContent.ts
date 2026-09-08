@@ -15,14 +15,6 @@ export const TRUST_SOCIAL = [
   { label: 'WhatsApp', href: 'https://wa.me/' },
 ] as const
 
-export const TRUST_PAYMENT_METHODS = [
-  'UPI',
-  'Visa',
-  'Mastercard',
-  'RuPay',
-  'Net Banking',
-] as const
-
 export interface FooterLink {
   label: string
   to: string
