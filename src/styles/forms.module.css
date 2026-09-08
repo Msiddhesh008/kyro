@@ -1,0 +1,144 @@
+.page {
+  padding: var(--space-7) 0 var(--space-8);
+}
+
+.narrow {
+  width: min(100% - 2rem, 36rem);
+  margin-inline: auto;
+}
+
+.wide {
+  width: min(100% - 2rem, 44rem);
+  margin-inline: auto;
+}
+
+.title {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
+}
+
+.lead {
+  margin: 0 0 var(--space-6);
+  color: var(--color-ink-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-ink);
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #9b3d3d;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.banner {
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+  background: var(--color-sage-soft);
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+}
+
+.banner strong {
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  list-style: none;
+  padding: 0;
+}
+
+.step {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+}
+
+.stepActive {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+.stepDone {
+  border-color: var(--color-sage);
+  color: var(--color-sage-deep);
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.checkRow input {
+  width: auto;
+}
+
+.altLink {
+  margin-top: var(--space-5);
+  color: var(--color-ink-muted);
+}
+
+.altLink a {
+  color: var(--color-sage-deep);
+  font-weight: 600;
+  text-decoration: underline;
+}

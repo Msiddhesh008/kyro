@@ -1,0 +1,40 @@
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(
+      120deg,
+      rgba(143, 162, 138, 0.22),
+      rgba(200, 169, 107, 0.16)
+    ),
+    var(--color-sand-soft);
+}
+
+.copy {
+  max-width: 32rem;
+}
+
+.title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.lead {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.cta {
+  flex-shrink: 0;
+}
