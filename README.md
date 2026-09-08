@@ -36,3 +36,4 @@ App runs at http://localhost:5173.
 | `npm run build` | Typecheck and production build |
 | `npm run preview` | Preview production build |
 | `npm run lint` | Lint with oxlint |
+# kyro-client
