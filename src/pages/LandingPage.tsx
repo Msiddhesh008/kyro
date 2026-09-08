@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { CampaignListItem } from '../components/campaigns/CampaignListItem'
 import { HowItWorksSection } from '../components/landing/HowItWorksSection'
+import { LandingTrustStrip } from '../components/landing/LandingTrustStrip'
 import { ManageOnTheGoSection } from '../components/landing/ManageOnTheGoSection'
 import { MonthlyGivingShowcase } from '../components/landing/MonthlyGivingShowcase'
 import { WhyKyroSection } from '../components/landing/WhyKyroSection'
@@ -95,6 +96,7 @@ export function LandingPage() {
       <HowItWorksSection />
       <ManageOnTheGoSection />
       <WhyKyroSection />
+      <LandingTrustStrip />
     </>
   )
 }

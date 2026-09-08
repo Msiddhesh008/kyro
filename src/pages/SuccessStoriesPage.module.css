@@ -1,0 +1,44 @@
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.card {
+  padding: var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.raised {
+  margin: 0 0 var(--space-2);
+  color: var(--color-sage-deep);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardTitle {
+  margin: 0 0 var(--space-2);
+  font-size: 1.25rem;
+  color: var(--color-ink);
+}
+
+.summary {
+  margin: 0 0 var(--space-4);
+  color: var(--color-ink-muted);
+  line-height: 1.55;
+}
+
+.link {
+  font-weight: 700;
+  color: var(--color-sage-deep);
+}
+
+.link:hover {
+  color: var(--color-ink);
+}

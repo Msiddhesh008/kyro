@@ -41,6 +41,12 @@ export function SiteHeader() {
           >
             Monthly giving
           </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? styles.aActive : undefined)}
+          >
+            About
+          </NavLink>
           {user ? (
             <NavLink
               to="/my-campaigns"
@@ -108,6 +114,9 @@ export function SiteHeader() {
           </Link>
           <Link to="/monthly" onClick={closeMenu}>
             Monthly giving
+          </Link>
+          <Link to="/about" onClick={closeMenu}>
+            About
           </Link>
           {user ? (
             <Link to="/my-campaigns" onClick={closeMenu}>

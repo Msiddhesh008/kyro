@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 import { CampaignListItem } from '../components/campaigns/CampaignListItem'
 import { MonthlyGivingBanner } from '../components/campaigns/MonthlyGivingBanner'
@@ -24,11 +25,25 @@ const SORT_OPTIONS: { value: CampaignSort; label: string }[] = [
   { value: 'newest', label: 'Newest' },
 ]
 
+function categoryFromParam(value: string | null): CategoryFilter {
+  if (!value) return 'All'
+  return (CAMPAIGN_CATEGORIES as readonly string[]).includes(value)
+    ? (value as CampaignCategory)
+    : 'All'
+}
+
 export function CampaignsPage() {
-  const [category, setCategory] = useState<CategoryFilter>('All')
+  const [searchParams] = useSearchParams()
+  const [category, setCategory] = useState<CategoryFilter>(() =>
+    categoryFromParam(searchParams.get('category')),
+  )
   const [query, setQuery] = useState('')
   const [location, setLocation] = useState<LocationFilter>('All')
   const [sort, setSort] = useState<CampaignSort>('trending')
+
+  useEffect(() => {
+    setCategory(categoryFromParam(searchParams.get('category')))
+  }, [searchParams])
 
   const mockCampaigns = useMockCampaigns({ category, query, location, sort })
   const apiQuery = useGetCampaignsQuery(
