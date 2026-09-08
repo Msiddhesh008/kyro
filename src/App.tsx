@@ -9,6 +9,7 @@ import { CampaignsPage } from './pages/CampaignsPage'
 import { CreateCampaignPage } from './pages/CreateCampaignPage'
 import { LandingPage } from './pages/LandingPage'
 import { LoginPage } from './pages/LoginPage'
+import { MonthlyGivingPage } from './pages/MonthlyGivingPage'
 import { MyCampaignsPage } from './pages/MyCampaignsPage'
 import { NgoApplicationPage } from './pages/NgoApplicationPage'
 import { SignupPage } from './pages/SignupPage'
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<LandingPage />} />
+          <Route path="monthly" element={<MonthlyGivingPage />} />
           <Route path="campaigns" element={<CampaignsPage />} />
           <Route
             path="campaigns/new"

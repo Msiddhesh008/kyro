@@ -35,6 +35,12 @@ export function SiteHeader() {
           >
             Browse campaigns
           </NavLink>
+          <NavLink
+            to="/monthly"
+            className={({ isActive }) => (isActive ? styles.aActive : undefined)}
+          >
+            Monthly giving
+          </NavLink>
           {user ? (
             <NavLink
               to="/my-campaigns"
@@ -99,6 +105,9 @@ export function SiteHeader() {
         <nav className={styles.mobileNav} aria-label="Mobile">
           <Link to="/campaigns" onClick={closeMenu}>
             Browse campaigns
+          </Link>
+          <Link to="/monthly" onClick={closeMenu}>
+            Monthly giving
           </Link>
           {user ? (
             <Link to="/my-campaigns" onClick={closeMenu}>

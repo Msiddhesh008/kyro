@@ -1,0 +1,100 @@
+.section {
+  padding: var(--space-8) 0 calc(var(--space-8) + 4rem);
+  background: var(--color-white);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.rule {
+  height: 1px;
+  margin: var(--space-4) 0 var(--space-5);
+  background: var(--color-border);
+}
+
+.list {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.item + .item {
+  border-top: 1px solid var(--color-border);
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: none;
+  background: transparent;
+  color: var(--color-ink);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chevron {
+  color: var(--color-sage-deep);
+  flex-shrink: 0;
+}
+
+.answer {
+  margin: 0;
+  padding: 0 var(--space-5) var(--space-4);
+  color: var(--color-ink-muted);
+  font-size: 0.98rem;
+}
+
+.footer {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 0.95rem;
+}
+
+.chats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.messenger,
+.whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.messenger {
+  background: #3b5998;
+}
+
+.whatsapp {
+  background: #25d366;
+}
+
+@media (min-width: 800px) {
+  .footer {
+    grid-template-columns: 1fr auto;
+  }
+}

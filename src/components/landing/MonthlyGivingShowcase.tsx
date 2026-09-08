@@ -26,17 +26,14 @@ export function MonthlyGivingShowcase() {
             {AMOUNTS.map((amount) => (
               <Link
                 key={amount}
-                to={`/campaigns/new?monthly=1&amount=${amount}`}
+                to={`/monthly#pledge`}
                 className={styles.chip}
               >
                 ₹{amount}/mo
               </Link>
             ))}
           </div>
-          <Link
-            to="/campaigns/new?monthly=1"
-            className={`btn btn-primary ${styles.cta}`}
-          >
+          <Link to="/monthly" className={`btn btn-primary ${styles.cta}`}>
             Start giving monthly
           </Link>
         </div>

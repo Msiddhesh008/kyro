@@ -15,10 +15,7 @@ export function MonthlyGivingBanner() {
           medical and cause campaigns moving.
         </p>
       </div>
-      <Link
-        to="/campaigns/new?monthly=1"
-        className={`btn btn-primary ${styles.cta}`}
-      >
+      <Link to="/monthly" className={`btn btn-primary ${styles.cta}`}>
         Start monthly giving
       </Link>
     </aside>
