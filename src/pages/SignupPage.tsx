@@ -2,6 +2,8 @@ import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { USE_MOCK } from '../constants'
+import { Input } from '../components/ui/FieldControls'
+import { Select } from '../components/ui/Select'
 import { useAppDispatch } from '../hooks/redux'
 import { useRegisterMutation } from '../services/api'
 import { setCredentials } from '../store/authSlice'
@@ -71,7 +73,7 @@ export function SignupPage() {
         <form className={formStyles.form} onSubmit={onSubmit}>
           <div className={formStyles.field}>
             <label htmlFor="signup-name">Full name</label>
-            <input
+            <Input
               id="signup-name"
               value={name}
               onChange={(event) => {
@@ -82,7 +84,7 @@ export function SignupPage() {
           </div>
           <div className={formStyles.field}>
             <label htmlFor="signup-email">Email</label>
-            <input
+            <Input
               id="signup-email"
               type="email"
               autoComplete="email"
@@ -95,7 +97,7 @@ export function SignupPage() {
           </div>
           <div className={formStyles.field}>
             <label htmlFor="signup-password">Password</label>
-            <input
+            <Input
               id="signup-password"
               type="password"
               autoComplete="new-password"
@@ -109,16 +111,17 @@ export function SignupPage() {
           </div>
           <div className={formStyles.field}>
             <label htmlFor="signup-role">I want to</label>
-            <select
+            <Select
               id="signup-role"
               value={role}
-              onChange={(event) => {
-                setRole(event.target.value as RegisterRequest['role'])
+              onChange={(next) => {
+                setRole(next as RegisterRequest['role'])
               }}
-            >
-              <option value="fundraiser">Raise funds</option>
-              <option value="donor">Donate to causes</option>
-            </select>
+              options={[
+                { value: 'fundraiser', label: 'Raise funds' },
+                { value: 'donor', label: 'Donate to causes' },
+              ]}
+            />
           </div>
           <div className={formStyles.actions}>
             <button type="submit" className="btn btn-primary" disabled={isLoading}>

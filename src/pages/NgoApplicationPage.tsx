@@ -2,6 +2,8 @@ import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 
 import { USE_MOCK } from '../constants'
+import { Input, Textarea } from '../components/ui/FieldControls'
+import { Select } from '../components/ui/Select'
 import { useAppSelector } from '../hooks/redux'
 import { useSubmitNgoApplicationMutation } from '../services/api'
 import { submitMockNgoApplication } from '../services/ngoMockService'
@@ -106,22 +108,14 @@ export function NgoApplicationPage() {
         <form className={formStyles.form} onSubmit={onSubmit}>
           <div className={formStyles.field}>
             <label htmlFor="ngo-reg">Is your organisation a registered Non-Profit?</label>
-            <select
+            <Select
               id="ngo-reg"
               value={form.registrationType}
-              onChange={(event) => {
-                update(
-                  'registrationType',
-                  event.target.value as NgoRegistrationType,
-                )
+              onChange={(next) => {
+                update('registrationType', next as NgoRegistrationType)
               }}
-            >
-              {REGISTRATION_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+              options={REGISTRATION_OPTIONS}
+            />
           </div>
 
           {form.registrationType === 'not_registered' ? (
@@ -133,7 +127,7 @@ export function NgoApplicationPage() {
             <>
               <div className={formStyles.field}>
                 <label htmlFor="ngo-name">Name of the organization</label>
-                <input
+                <Input
                   id="ngo-name"
                   value={form.organizationName}
                   onChange={(event) => {
@@ -144,7 +138,7 @@ export function NgoApplicationPage() {
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="ngo-address">Organization&apos;s registered address</label>
-                <textarea
+                <Textarea
                   id="ngo-address"
                   value={form.registeredAddress}
                   onChange={(event) => {
@@ -155,7 +149,7 @@ export function NgoApplicationPage() {
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="ngo-city">City</label>
-                <input
+                <Input
                   id="ngo-city"
                   value={form.city}
                   onChange={(event) => {
@@ -166,23 +160,21 @@ export function NgoApplicationPage() {
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="ngo-cause">Cause supported (main area of work)</label>
-                <select
+                <Select
                   id="ngo-cause"
                   value={form.cause}
-                  onChange={(event) => {
-                    update('cause', event.target.value as NgoCause)
+                  onChange={(next) => {
+                    update('cause', next as NgoCause)
                   }}
-                >
-                  {CAUSES.map((cause) => (
-                    <option key={cause} value={cause}>
-                      {cause}
-                    </option>
-                  ))}
-                </select>
+                  options={CAUSES.map((cause) => ({
+                    value: cause,
+                    label: cause,
+                  }))}
+                />
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="ngo-founders">Founder&apos;s name(s)</label>
-                <input
+                <Input
                   id="ngo-founders"
                   value={form.founderNames}
                   onChange={(event) => {
@@ -193,7 +185,7 @@ export function NgoApplicationPage() {
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="ngo-linkedin">Founder&apos;s LinkedIn (optional)</label>
-                <input
+                <Input
                   id="ngo-linkedin"
                   type="url"
                   placeholder="https://linkedin.com/in/..."

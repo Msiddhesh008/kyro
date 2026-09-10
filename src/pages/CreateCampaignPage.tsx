@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { CAMPAIGN_CATEGORIES, USE_MOCK, type CampaignCategory } from '../constants'
 import { CampaignImageUploader } from '../components/campaigns/CampaignImageUploader'
+import { Input, Textarea } from '../components/ui/FieldControls'
+import { Select } from '../components/ui/Select'
 import { useAppSelector } from '../hooks/redux'
 import {
   useCreateCampaignMutation,
@@ -140,7 +142,7 @@ export function CreateCampaignPage() {
             <>
               <div className={formStyles.field}>
                 <label htmlFor="campaign-title">Campaign title</label>
-                <input
+                <Input
                   id="campaign-title"
                   value={form.title}
                   onChange={(event) => {
@@ -150,23 +152,21 @@ export function CreateCampaignPage() {
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="campaign-category">Category</label>
-                <select
+                <Select
                   id="campaign-category"
                   value={form.category}
-                  onChange={(event) => {
-                    update('category', event.target.value as CampaignCategory)
+                  onChange={(next) => {
+                    update('category', next as CampaignCategory)
                   }}
-                >
-                  {CAMPAIGN_CATEGORIES.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
+                  options={CAMPAIGN_CATEGORIES.map((category) => ({
+                    value: category,
+                    label: category,
+                  }))}
+                />
               </div>
               <div className={formStyles.field}>
                 <label htmlFor="campaign-summary">Short summary</label>
-                <textarea
+                <Textarea
                   id="campaign-summary"
                   value={form.summary}
                   onChange={(event) => {
@@ -183,7 +183,7 @@ export function CreateCampaignPage() {
             <>
               <div className={formStyles.field}>
                 <label htmlFor="campaign-story">Full story</label>
-                <textarea
+                <Textarea
                   id="campaign-story"
                   value={form.story}
                   onChange={(event) => {
@@ -204,7 +204,7 @@ export function CreateCampaignPage() {
           {step === 2 ? (
             <div className={formStyles.field}>
               <label htmlFor="campaign-goal">Goal amount (INR)</label>
-              <input
+              <Input
                 id="campaign-goal"
                 type="number"
                 min={1000}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 
 import { USE_MOCK } from '../../constants'
+import { Checkbox, Input } from '../ui/FieldControls'
 import { useCreateDonationMutation } from '../../services/api'
 import { applyMockDonation } from '../../services/campaignService'
 import formStyles from '../../styles/forms.module.css'
@@ -110,7 +111,7 @@ export function DonateModal({
                 </button>
               ))}
             </div>
-            <input
+            <Input
               type="number"
               min={MIN_AMOUNT}
               step={100}
@@ -125,7 +126,7 @@ export function DonateModal({
 
           <div className={formStyles.field}>
             <label htmlFor="donor-name">Name</label>
-            <input
+            <Input
               id="donor-name"
               value={donorName}
               onChange={(event) => {
@@ -138,7 +139,7 @@ export function DonateModal({
 
           <div className={formStyles.field}>
             <label htmlFor="donor-email">Email</label>
-            <input
+            <Input
               id="donor-email"
               type="email"
               value={donorEmail}
@@ -149,16 +150,14 @@ export function DonateModal({
             />
           </div>
 
-          <label className={formStyles.checkRow}>
-            <input
-              type="checkbox"
-              checked={isAnonymous}
-              onChange={(event) => {
-                setIsAnonymous(event.target.checked)
-              }}
-            />
-            Donate anonymously
-          </label>
+          <Checkbox
+            id="donor-anonymous"
+            label="Donate anonymously"
+            checked={isAnonymous}
+            onChange={(event) => {
+              setIsAnonymous(event.target.checked)
+            }}
+          />
 
           <div className={styles.actions}>
             <button

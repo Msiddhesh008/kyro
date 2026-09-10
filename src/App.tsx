@@ -7,6 +7,7 @@ import { AboutPage } from './pages/AboutPage'
 import { AdminNgoPage } from './pages/AdminNgoPage'
 import { CampaignDetailPage } from './pages/CampaignDetailPage'
 import { CampaignsPage } from './pages/CampaignsPage'
+import { CauseDetailPage } from './pages/CauseDetailPage'
 import { CreateCampaignPage } from './pages/CreateCampaignPage'
 import { HelpPage } from './pages/HelpPage'
 import { LandingPage } from './pages/LandingPage'
@@ -34,6 +35,7 @@ function App() {
           <Route path="help" element={<HelpPage />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="causes/:slug" element={<CauseDetailPage />} />
           <Route path="campaigns" element={<CampaignsPage />} />
           <Route
             path="campaigns/new"

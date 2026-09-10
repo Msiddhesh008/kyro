@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { CampaignListItem } from '../components/campaigns/CampaignListItem'
+import { CausesSection } from '../components/landing/CausesSection'
 import { HowItWorksSection } from '../components/landing/HowItWorksSection'
 import { LandingTrustStrip } from '../components/landing/LandingTrustStrip'
 import { ManageOnTheGoSection } from '../components/landing/ManageOnTheGoSection'
@@ -68,6 +69,7 @@ export function LandingPage() {
       </section>
 
       <MonthlyGivingShowcase />
+     
 
       <section ref={featuredRef} className={styles.section}>
         <div className="container">
@@ -95,6 +97,7 @@ export function LandingPage() {
       </section>
       <HowItWorksSection />
       <ManageOnTheGoSection />
+      <CausesSection />
       <WhyKyroSection />
       <LandingTrustStrip />
     </>

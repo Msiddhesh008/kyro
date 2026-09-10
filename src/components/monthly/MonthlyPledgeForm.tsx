@@ -5,6 +5,7 @@ import {
   MONTHLY_MIN_AMOUNT,
   MONTHLY_PRESETS,
 } from '../../constants/monthlyGiving'
+import { Input } from '../ui/FieldControls'
 import formStyles from '../../styles/forms.module.css'
 import styles from './MonthlyPledgeForm.module.css'
 
@@ -89,7 +90,7 @@ export function MonthlyPledgeForm() {
 
       <div className={formStyles.field}>
         <label htmlFor="monthly-other">Other amount</label>
-        <input
+        <Input
           id="monthly-other"
           type="number"
           min={MONTHLY_MIN_AMOUNT}
@@ -104,7 +105,7 @@ export function MonthlyPledgeForm() {
 
       <div className={formStyles.field}>
         <label htmlFor="monthly-name">Name *</label>
-        <input
+        <Input
           id="monthly-name"
           name="name"
           autoComplete="name"
@@ -118,7 +119,7 @@ export function MonthlyPledgeForm() {
 
       <div className={formStyles.field}>
         <label htmlFor="monthly-email">Email address *</label>
-        <input
+        <Input
           id="monthly-email"
           name="email"
           type="email"
@@ -133,7 +134,7 @@ export function MonthlyPledgeForm() {
 
       <div className={formStyles.field}>
         <label htmlFor="monthly-mobile">Mobile number *</label>
-        <input
+        <Input
           id="monthly-mobile"
           name="mobile"
           type="tel"

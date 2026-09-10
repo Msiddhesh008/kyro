@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from 'react'
 
 import { CAMPAIGN_CATEGORIES, type CampaignCategory } from '../../constants'
+import { Input, Textarea } from '../ui/FieldControls'
+import { Select } from '../ui/Select'
 import {
   updateMockCampaign,
   type UpdateCampaignInput,
@@ -122,7 +124,7 @@ export function CampaignOwnerActions({
     <form className={styles.editForm} onSubmit={onSave} noValidate>
       <div className={formStyles.field}>
         <label htmlFor={`edit-title-${campaign.id}`}>Title</label>
-        <input
+        <Input
           id={`edit-title-${campaign.id}`}
           value={form.title ?? ''}
           onChange={(event) => {
@@ -132,23 +134,21 @@ export function CampaignOwnerActions({
       </div>
       <div className={formStyles.field}>
         <label htmlFor={`edit-category-${campaign.id}`}>Category</label>
-        <select
+        <Select
           id={`edit-category-${campaign.id}`}
-          value={form.category}
-          onChange={(event) => {
-            update('category', event.target.value as CampaignCategory)
+          value={form.category ?? CAMPAIGN_CATEGORIES[0]}
+          onChange={(next) => {
+            update('category', next as CampaignCategory)
           }}
-        >
-          {CAMPAIGN_CATEGORIES.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+          options={CAMPAIGN_CATEGORIES.map((category) => ({
+            value: category,
+            label: category,
+          }))}
+        />
       </div>
       <div className={formStyles.field}>
         <label htmlFor={`edit-summary-${campaign.id}`}>Summary</label>
-        <textarea
+        <Textarea
           id={`edit-summary-${campaign.id}`}
           value={form.summary ?? ''}
           maxLength={200}
@@ -159,7 +159,7 @@ export function CampaignOwnerActions({
       </div>
       <div className={formStyles.field}>
         <label htmlFor={`edit-story-${campaign.id}`}>Story</label>
-        <textarea
+        <Textarea
           id={`edit-story-${campaign.id}`}
           value={form.story ?? ''}
           onChange={(event) => {
@@ -169,7 +169,7 @@ export function CampaignOwnerActions({
       </div>
       <div className={formStyles.field}>
         <label htmlFor={`edit-goal-${campaign.id}`}>Goal (INR)</label>
-        <input
+        <Input
           id={`edit-goal-${campaign.id}`}
           type="number"
           min={1000}

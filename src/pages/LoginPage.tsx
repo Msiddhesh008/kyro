@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { USE_MOCK } from '../constants'
+import { Input } from '../components/ui/FieldControls'
 import { useAppDispatch } from '../hooks/redux'
 import { useLoginMutation } from '../services/api'
 import { setCredentials } from '../store/authSlice'
@@ -78,7 +79,7 @@ export function LoginPage() {
         <form className={formStyles.form} onSubmit={onSubmit}>
           <div className={formStyles.field}>
             <label htmlFor="login-email">Email</label>
-            <input
+            <Input
               id="login-email"
               type="email"
               autoComplete="email"
@@ -91,7 +92,7 @@ export function LoginPage() {
           </div>
           <div className={formStyles.field}>
             <label htmlFor="login-password">Password</label>
-            <input
+            <Input
               id="login-password"
               type="password"
               autoComplete="current-password"

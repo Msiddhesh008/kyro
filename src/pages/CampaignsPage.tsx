@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 
 import { CampaignListItem } from '../components/campaigns/CampaignListItem'
 import { MonthlyGivingBanner } from '../components/campaigns/MonthlyGivingBanner'
+import { Input } from '../components/ui/FieldControls'
+import { Select } from '../components/ui/Select'
 import {
   CAMPAIGN_CATEGORIES,
   CAMPAIGN_LOCATIONS,
@@ -98,7 +100,7 @@ export function CampaignsPage() {
             <label className="visually-hidden" htmlFor="campaign-search">
               Search for fundraiser
             </label>
-            <input
+            <Input
               id="campaign-search"
               className={styles.search}
               type="search"
@@ -112,54 +114,53 @@ export function CampaignsPage() {
             <div className={styles.filterRow}>
               <p className={styles.filterSentence}>
                 Showing fundraisers for{' '}
-                <label className={styles.pill}>
-                  <span className="visually-hidden">Category</span>
-                  <select
+                <span className={styles.pill}>
+                  <Select
+                    variant="pill"
+                    aria-label="Category"
                     value={category}
-                    onChange={(event) => {
-                      setCategory(event.target.value as CategoryFilter)
+                    onChange={(next) => {
+                      setCategory(next as CategoryFilter)
                     }}
-                  >
-                    {CATEGORY_OPTIONS.map((option) => (
-                      <option key={option} value={option}>
-                        {option === 'All' ? 'All Categories' : option}
-                      </option>
-                    ))}
-                  </select>
-                </label>{' '}
+                    options={CATEGORY_OPTIONS.map((option) => ({
+                      value: option,
+                      label: option === 'All' ? 'All Categories' : option,
+                    }))}
+                  />
+                </span>{' '}
                 under{' '}
-                <label className={styles.pill}>
-                  <span className="visually-hidden">Sort</span>
-                  <select
+                <span className={styles.pill}>
+                  <Select
+                    variant="pill"
+                    aria-label="Sort"
                     value={sort}
-                    onChange={(event) => {
-                      setSort(event.target.value as CampaignSort)
+                    onChange={(next) => {
+                      setSort(next as CampaignSort)
                     }}
-                  >
-                    {SORT_OPTIONS.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>{' '}
+                    options={SORT_OPTIONS.map((option) => ({
+                      value: option.value,
+                      label: option.label,
+                    }))}
+                  />
+                </span>{' '}
                 from{' '}
-                <label className={styles.pill}>
-                  <span className="visually-hidden">Location</span>
-                  <select
+                <span className={styles.pill}>
+                  <Select
+                    variant="pill"
+                    aria-label="Location"
                     value={location}
-                    onChange={(event) => {
-                      setLocation(event.target.value as LocationFilter)
+                    onChange={(next) => {
+                      setLocation(next as LocationFilter)
                     }}
-                  >
-                    <option value="All">All Locations</option>
-                    {CAMPAIGN_LOCATIONS.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                    options={[
+                      { value: 'All', label: 'All Locations' },
+                      ...CAMPAIGN_LOCATIONS.map((option) => ({
+                        value: option,
+                        label: option,
+                      })),
+                    ]}
+                  />
+                </span>
               </p>
               <button
                 type="button"
